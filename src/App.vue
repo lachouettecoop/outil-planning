@@ -34,19 +34,19 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <ApolloExample />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import ApolloExample from './components/ApolloExample'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld
+    ApolloExample
   },
 
   data: () => ({
