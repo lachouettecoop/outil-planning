@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Contact from '../views/Contact.vue'
 import TakePosition from '../views/TakePosition.vue'
 import WatchPlanning from '../views/WatchPlanning.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   {
     path: '/contact',

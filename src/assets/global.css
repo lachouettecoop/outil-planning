@@ -1,0 +1,13 @@
+.m-0 {
+    margin: 0 !important;
+}
+
+.title {
+    font-size: 6rem;
+    color: black;
+}
+
+.v-btn{
+    /* Rewrites vuetify class */
+    margin:10px;
+}

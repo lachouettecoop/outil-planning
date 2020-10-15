@@ -1,6 +1,5 @@
 <template>
   <div class="contact">
-    <Navbar />
     <h1>Adresse :</h1>
     <h1>
       Association “Les Amis de La Chouette Coop”<br />
@@ -10,12 +9,8 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
-
 export default {
-  components: {
-    Navbar
-  }
+  components: {},
 }
 </script>
 

@@ -1,18 +1,10 @@
 <template>
-  <div class="watch-planning">
-    <Navbar />
-    <h1>Voici la page qui permet de regarder le planning.</h1>
-  </div>
+  <label>Planning</label>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
-
 export default {
-  components: {
-    Navbar
-  }
+  components: {},
+  methods: {}
 }
 </script>
-
-<style scoped></style>

@@ -1,9 +1,27 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <v-app>
+    <div id="app">
+      <v-app-bar app color="rgb(57,83,70)" elevate-on-scroll fixed>
+        <v-spacer></v-spacer>        
+        <v-list-item-icon style="margin: 0;">
+            <v-img :src="require('@/assets/img/chouette42x53.jpg')"></v-img>
+        </v-list-item-icon>
+      </v-app-bar>
+      <Menu />
+      <v-main>
+        <router-view />
+      </v-main>
+    </div>
+  </v-app>
 </template>
-
+<script>
+import Menu from '@/components/Menu.vue'
+export default {
+  components: {
+    Menu,
+  },
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
