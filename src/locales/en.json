@@ -1,0 +1,9 @@
+{
+    "message": "hello {name} !!",
+    "Menu":{
+      "Accueil": "Home",
+      "Planning": "Planning",
+      "Espace membre": "Member site"
+    }
+  
+  }

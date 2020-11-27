@@ -18,7 +18,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-  withCredentials: true,
+  withCredentials: true
 })
 
 export default {
@@ -29,11 +29,11 @@ export default {
   }),
   components: {},
   methods: {
-    getCookie: function (name) {
+    getCookie: function(name) {
       var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
       if (match) return match[2]
     },
-    clickLogin: function () {
+    clickLogin: function() {
       let formData = new FormData()
       formData.append('username', this.user)
       formData.append('password', this.userPassword)
@@ -50,18 +50,18 @@ export default {
           document.cookie =
             'PHPSESSID=c8p8f7lfji24frr3hmcqpbso50;SameSite=None;Secure'
           console.log(this.getCookie('PHPSESSID'))*/
-       })
+        })
         .catch(error => {
           console.log(error)
-        }) 
+        })
     },
-    getPIAF: function () {
+    getPIAF: function() {
       this.$cookies.remove('PHPSESSID')
       console.log(this.$cookies.get('PHPSESSID'))
 
       this.$cookies.set(
         'PHPSESSID',
-        'p0c6873vkjltb8ghcpd3v58ln9',
+        'jqs3bleirmit03uvs1tev6g79o',
         '1d',
         '',
         '',
@@ -78,17 +78,17 @@ export default {
       axiosInstance
         .get('https://adminchouettos.lachouettecoop.fr/api/piafs', formData, {
           headers: {
-            Cookie: 'PHPSESSID=' + this.$cookies.get('PHPSESSID').toString(),
-          },
+            Cookie: 'PHPSESSID=' + this.$cookies.get('PHPSESSID').toString()
+          }
         })
-        .then((data) => {
+        .then(data => {
           console.log(data)
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
         })
-    },
-  },
+    }
+  }
 }
 </script>
 

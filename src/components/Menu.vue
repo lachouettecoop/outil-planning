@@ -1,10 +1,10 @@
 <template>
   <v-navigation-drawer
-    v-model="sidebarMenu"
     app
     floating
     :permanent="sidebarMenu"
-    :mini-variant.sync="mini"
+    :mini-variant= this.toggleMini
+    v-show="mini"
   >
     <v-list dense color="rgb(57,83,70)" dark>
       <v-list-item>
@@ -33,8 +33,8 @@
           <v-img :src="require('@/assets/img/' + item.icon)"></v-img>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title class="break-line text">{{
-            item.title
+          <v-list-item-title class="break-line text">{{  
+            $t('menu.' + item.title)
           }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -45,30 +45,30 @@
 export default {
   computed: {
     mini() {
-      return this.$vuetify.breakpoint.smAndDown || this.toggleMini
+      return !this.$vuetify.breakpoint.smAndDown
     }
   },
   data: () => ({
-    sidebarMenu: true,
+    sidebarMenu: false,
     toggleMini: false,
     items: [
-      { title: 'Accueil', href: '/', icon: 'home.png' },
-      { title: 'Planning', href: '/watchPlanning', icon: 'planning.png' },
-      { title: 'Réserve', href: '/reserve', icon: 'reserve.png' },
+      { title: 'home', href: '/', icon: 'home.png' },
+      { title: 'planning', href: '/watchPlanning', icon: 'planning.png' },
+      { title: 'reserve', href: '/reserve', icon: 'reserve.png' },
       {
-        title: 'Réservation automatique',
+        title: 'resAuto',
         href: '/reserveAutomatique',
         icon: 'resaAuto.png'
       },
-      { title: 'Mon profil', href: '/profil', icon: 'user.png' },
-      { title: 'Espace membre', href: '/espaceMembre', icon: 'retour.png' }
+      { title: 'profile', href: '/profil', icon: 'user.png' },
+      { title: 'memberArea', href: '/memberArea', icon: 'retour.png' }
     ]
   }),
   methods: {}
 }
 </script>
 <style scoped>
-.break-line{
-    white-space: break-spaces;
+.break-line {
+  white-space: break-spaces;
 }
 </style>

@@ -1,0 +1,12 @@
+{
+  "message": "Salut {name} !!",
+  "menu":{
+    "home": "Accueil",
+    "planning": "Planning",
+    "resAuto": "Réservation automatique",
+    "reserve": "Réserve",
+    "profile": "Mon profil",
+    "memberArea": "Espace membre"
+  }
+
+}
