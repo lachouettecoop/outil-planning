@@ -1,10 +1,12 @@
 <template>
+  <!-- Without the condition mobile-breakpoint="960" de v-show does not work -->
   <v-navigation-drawer
     app
     floating
     :permanent="sidebarMenu"
     :mini-variant= this.toggleMini
-    v-show="mini"
+    mobile-breakpoint="960"
+    :v-show="show"
   >
     <v-list dense color="rgb(57,83,70)" dark>
       <v-list-item>
@@ -44,8 +46,8 @@
 <script>
 export default {
   computed: {
-    mini() {
-      return !this.$vuetify.breakpoint.smAndDown
+    show() {
+      return this.$vuetify.breakpoint.smAndUp
     }
   },
   data: () => ({
