@@ -9,7 +9,9 @@ import i18n from './i18n'
 
 Vue.config.productionTip = false
 Vue.use(axios)
-Vue.use(require('vue-cookies'))
+
+axios.defaults.withCredentials = true
+axios.defaults.baseURL = 'https://adminchouettos.lachouettecoop.fr/';
 
 new Vue({
   router,

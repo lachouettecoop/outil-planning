@@ -7,6 +7,7 @@
     :mini-variant= this.toggleMini
     mobile-breakpoint="960"
     :v-show="show"
+    v-if="isLoggedIn"
   >
     <v-list dense color="rgb(57,83,70)" dark>
       <v-list-item>
@@ -44,8 +45,12 @@
   </v-navigation-drawer>
 </template>
 <script>
+import store from "../store";
 export default {
   computed: {
+    isLoggedIn: function () {
+      return store.getters.isAuthenticated
+    },
     show() {
       return this.$vuetify.breakpoint.smAndUp
     }

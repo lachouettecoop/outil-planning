@@ -1,28 +1,25 @@
 <template>
   <v-app>
     <div id="app">
-      <v-app-bar app color="rgb(57,83,70)" elevate-on-scroll fixed>
-        <v-spacer></v-spacer>
-        <v-list-item-icon style="margin: 0;">
-          <v-img :src="require('@/assets/img/chouette40x50.jpg')"></v-img>
-        </v-list-item-icon>
-      </v-app-bar>
+      <AppBar />
       <Menu />
       <v-main>
         <router-view />
       </v-main>
-      <BottomMenu/>
+      <BottomMenu />
     </div>
   </v-app>
 </template>
 <script>
+import AppBar from '@/components/AppBar.vue'
 import Menu from '@/components/Menu.vue'
 import BottomMenu from '@/components/BottomMenu.vue'
 export default {
   components: {
     Menu,
-    BottomMenu
-  }
+    BottomMenu,
+    AppBar
+  },
 }
 </script>
 <style>

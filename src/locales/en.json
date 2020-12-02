@@ -1,9 +1,17 @@
 {
-    "message": "hello {name} !!",
-    "Menu":{
-      "Accueil": "Home",
-      "Planning": "Planning",
-      "Espace membre": "Member site"
-    }
-  
-  }
+    "menu": {
+        "home": "Home",
+        "planning": "Planning",
+        "resAuto": "Automatic booking",
+        "resAutoMin": "Auto booking",
+        "reserve": "Reserve",
+        "profile": "My profile",
+        "memberArea": "Member site"
+    },
+    "login": {
+        "logout": "Logout",
+        "login": "Login",
+        "user": "User",
+        "password": "Password"
+      }
+}

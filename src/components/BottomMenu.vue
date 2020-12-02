@@ -6,6 +6,7 @@
     fixed
     style="height: 60px"
     v-show="show"
+    v-if="isLoggedIn"
   >
     <v-list-item
       class="bottom-menu"
@@ -44,24 +45,23 @@
   </v-app-bar>
 </template>
 <script>
+import store from "../store";
 export default {
   computed: {
+    isLoggedIn: function () {
+      return store.getters.isAuthenticated
+    },
     show() {
       return this.$vuetify.breakpoint.smAndDown
-    },
+    }
   },
-  mounted: {},
   data: () => ({
     sidebarMenu: false,
     toggleMini: false,
     itemsVisibles: [
       { title: 'planning', href: '/watchPlanning', icon: 'planning.png' },
       { title: 'reserve', href: '/reserve', icon: 'reserve.png' },
-      {
-        title: 'resAutoMin',
-        href: '/reserveAutomatique',
-        icon: 'resaAuto.png',
-      },
+      { title: 'resAutoMin', href: '/reserveAutomatique', icon: 'resaAuto.png' }
     ],
     itemsHidden: [
       { title: 'profile', href: '/profil', icon: 'user.png' },

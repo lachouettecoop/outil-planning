@@ -1,25 +1,19 @@
 <template>
   <v-container>
-    <v-text-field label="Utilisateur" v-model="user"> </v-text-field>
+    <v-text-field :label="$t('login.user')" v-model="user"> </v-text-field>
     <v-text-field
-      label="Mot de passe"
+      :label="$t('login.password')"
       :append-icon="visiblePassword ? 'mdi-eye' : 'mdi-eye-off'"
       @click:append="() => (visiblePassword = !visiblePassword)"
       :type="!visiblePassword ? 'password' : 'text'"
       v-model="userPassword"
     ></v-text-field>
-    <v-btn v-on:click="clickLogin()">Login</v-btn>
-    <v-spacer></v-spacer>
-    <v-btn v-on:click="getPIAF()">Get PIAF</v-btn>
+    <v-btn v-on:click="clickLogin()">{{$t('login.login')}}</v-btn>
   </v-container>
 </template>
 
 <script>
-import axios from 'axios'
-
-const axiosInstance = axios.create({
-  withCredentials: true
-})
+import { mapActions } from 'vuex';
 
 export default {
   data: () => ({
@@ -29,64 +23,19 @@ export default {
   }),
   components: {},
   methods: {
-    getCookie: function(name) {
-      var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
-      if (match) return match[2]
-    },
-    clickLogin: function() {
-      let formData = new FormData()
-      formData.append('username', this.user)
-      formData.append('password', this.userPassword)
-
-      axiosInstance
-        .post('https://adminchouettos.lachouettecoop.fr/login_api', formData)
-        .then(data => {
-          console.log(data)
-          console.log(data.headers)
-          console.log(document.cookie)
-          /* 
-          console.log(data.headers.link)
-
-          document.cookie =
-            'PHPSESSID=c8p8f7lfji24frr3hmcqpbso50;SameSite=None;Secure'
-          console.log(this.getCookie('PHPSESSID'))*/
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    getPIAF: function() {
-      this.$cookies.remove('PHPSESSID')
-      console.log(this.$cookies.get('PHPSESSID'))
-
-      this.$cookies.set(
-        'PHPSESSID',
-        'jqs3bleirmit03uvs1tev6g79o',
-        '1d',
-        '',
-        '',
-        'true',
-        'Lax'
-      )
-      console.log('The new cookie is ' + this.$cookies.get('PHPSESSID'))
-
-      //  document.cookie ='PHPSESSID=ognbr81u703gud6vgfc5o0kufj; secure; HttpOnly; SameSite=None'
-      //console.log(document.cookie)
-      let formData = new FormData()
-      formData.append('id', '1')
-      //axios.defaults.withCredentials = true
-      axiosInstance
-        .get('https://adminchouettos.lachouettecoop.fr/api/piafs', formData, {
-          headers: {
-            Cookie: 'PHPSESSID=' + this.$cookies.get('PHPSESSID').toString()
-          }
-        })
-        .then(data => {
-          console.log(data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+  ...mapActions(["LogIn"]),
+    async clickLogin() {
+      const User = new FormData();
+      User.append('username', this.user)
+      User.append('password', this.userPassword)
+      try {
+          await this.LogIn(User);
+          this.$router.push("/");
+          //this.showError = false
+      } catch (error) {
+        console.log(error)
+       // this.showError = true
+      }
     }
   }
 }

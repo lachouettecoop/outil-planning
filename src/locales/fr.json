@@ -8,6 +8,12 @@
     "reserve": "Réserve",
     "profile": "Mon profil",
     "memberArea": "Espace membre"
+  },
+  "login": {
+    "logout": "Sortir",
+    "login": "Entrer",
+    "user": "Utilisateur",
+    "password": "Mot de passe"
   }
 
 }
