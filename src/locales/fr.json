@@ -13,7 +13,8 @@
     "logout": "Sortir",
     "login": "Entrer",
     "user": "Utilisateur",
-    "password": "Mot de passe"
+    "password": "Mot de passe",
+    "errorMessage": "L'utilisateur ou le mot de passe n'est pas correct"
   }
 
 }

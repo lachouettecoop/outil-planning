@@ -6,17 +6,19 @@ import vuetify from './plugins/vuetify'
 import axios from 'axios'
 import '@/assets/global.css'
 import i18n from './i18n'
+import { createProvider } from './vue-apollo'
 
 Vue.config.productionTip = false
 Vue.use(axios)
 
-axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'https://adminchouettos.lachouettecoop.fr/';
+//axios.defaults.withCredentials = true
+axios.defaults.baseURL = 'https://adminchouettos.lachouettecoop.fr/'
 
 new Vue({
   router,
   store,
   vuetify,
   i18n,
+  apolloProvider: createProvider(),
   render: h => h(App)
 }).$mount('#app')

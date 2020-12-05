@@ -26,7 +26,7 @@
         <v-icon>mdi-account-outline</v-icon>
       </v-list-item-avatar>
       <v-list-item-content class="text-truncate">
-        Machin Truc Bidule
+        {{userLoged}}
       </v-list-item-content>
     </v-list-item>
     <v-divider></v-divider>
@@ -45,14 +45,16 @@
   </v-navigation-drawer>
 </template>
 <script>
-import store from "../store";
 export default {
   computed: {
     isLoggedIn: function () {
-      return store.getters.isAuthenticated
+      return this.$store.getters.isAuthenticated
     },
     show() {
       return this.$vuetify.breakpoint.smAndUp
+    },
+    userLoged () {
+      return this.$store.getters.user
     }
   },
   data: () => ({

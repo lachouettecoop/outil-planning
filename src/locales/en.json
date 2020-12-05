@@ -12,6 +12,7 @@
         "logout": "Logout",
         "login": "Login",
         "user": "User",
-        "password": "Password"
+        "password": "Password",
+        "errorMessage": "Username or Password is incorrect"
       }
 }

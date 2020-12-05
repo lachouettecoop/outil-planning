@@ -45,10 +45,10 @@
   </v-app-bar>
 </template>
 <script>
-import store from "../store";
+import store from '../store'
 export default {
   computed: {
-    isLoggedIn: function () {
+    isLoggedIn: function() {
       return store.getters.isAuthenticated
     },
     show() {
@@ -65,10 +65,10 @@ export default {
     ],
     itemsHidden: [
       { title: 'profile', href: '/profil', icon: 'user.png' },
-      { title: 'memberArea', href: '/memberArea', icon: 'retour.png' },
-    ],
+      { title: 'memberArea', href: '/memberArea', icon: 'retour.png' }
+    ]
   }),
-  methods: {},
+  methods: {}
 }
 </script>
 <style scoped>

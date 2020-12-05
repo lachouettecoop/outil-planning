@@ -19,7 +19,7 @@ export default {
     Menu,
     BottomMenu,
     AppBar
-  },
+  }
 }
 </script>
 <style>
