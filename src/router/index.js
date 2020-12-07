@@ -42,7 +42,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   var requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  var currentUser = store.getters.isAuthenticated
+  var currentUser = store.getters.user
   // when route requires auth and there's no current user, reidrect to '/login'
   if (requiresAuth && !currentUser) {
     next('/login')

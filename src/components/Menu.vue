@@ -48,13 +48,13 @@
 export default {
   computed: {
     isLoggedIn: function () {
-      return this.$store.getters.isAuthenticated
+      return this.$store.getters.user != null
     },
     show() {
       return this.$vuetify.breakpoint.smAndUp
     },
     userLoged () {
-      return this.$store.getters.user
+      return this.$store.getters.user.prenom.concat(' ' +  this.$store.getters.user.nom)       
     }
   },
   data: () => ({

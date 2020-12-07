@@ -1,56 +1,67 @@
 import axios from 'axios'
+import { LOGGED_IN_USER } from '@/graphql/queries'
+import { createProvider } from '../../vue-apollo'
 
-const state = {  
-  userId: null,  
-  authStatus: false,
-  loginFailed: false
+let apolloProvider = createProvider()
+
+const state = {
+    user: null,
+    loginFailed: false
 }
 
 const getters = {
-  isAuthenticated: state => state.authStatus,
-  isLoginFailed: state => state.loginFailed,
-  user: state => state.userId
+    isLoginFailed: state => state.loginFailed,
+    user: state => state.user
 }
 
+
 const actions = {
-  async LogIn({ commit }, user) {
-    await axios
-      .post('login_api', user)
-      .then(result => {
-        console.log(result.data)
-        localStorage.setItem(process.env.AUTH_TOKEN, result.data.token)
-        commit('login', result.data.userId)
-        commit('setFailedLogin', false)
-      })
-      .catch(error => {
-        console.log('error from auth ' + error)
-        commit('setFailedLogin', true)
-      })
-  },
-  async LogOut({ commit }) {
-    commit('logout')
-    if (typeof localStorage !== 'undefined') {
-        localStorage.removeItem(process.env.AUTH_TOKEN)
-      }
-  }
+    async LogIn({ commit }, user) {
+        try {
+            let resultLogIn = await axios.post('login_api', user)
+
+            console.log(resultLogIn.data)
+            localStorage.setItem(process.env.AUTH_TOKEN, resultLogIn.data.token)
+           
+            let resultGetUser = await apolloProvider.query(
+            {
+                query: LOGGED_IN_USER,
+                variables: { id: `/api/users/${resultLogIn.data.userId}` }
+            })
+
+            console.log(resultGetUser)
+
+            commit('login', resultGetUser.data.user )
+            commit('setFailedLogin', false)
+        }
+        catch (ex) {
+            console.log('error from auth ' + ex)
+            commit('setFailedLogin', true)
+        }
+    },
+    async LogOut({ commit }) {
+        commit('logout')
+        if (typeof localStorage !== 'undefined') {
+            localStorage.removeItem(process.env.AUTH_TOKEN)
+        }
+    }
 }
 
 const mutations = {
-  login(state, userId) {
-    state.authStatus = true
-    state.userId = userId
-  },
-  logout(state) {
-    state.userId = null
-  },
-  setFailedLogin(state, isFailed) {
-    state.loginFailed = isFailed
-  }
+    login(state, user) {
+        state.user = user
+    },
+    logout(state) {
+        state.user = null
+    },
+    setFailedLogin(state, isFailed) {
+        state.loginFailed = isFailed
+    }
 }
 
 export default {
-  state,
-  getters,
-  actions,
-  mutations
+    state,
+    getters,
+    actions,
+    mutations
 }

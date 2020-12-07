@@ -45,11 +45,10 @@
   </v-app-bar>
 </template>
 <script>
-import store from '../store'
 export default {
   computed: {
     isLoggedIn: function() {
-      return store.getters.isAuthenticated
+      return this.$store.getters.user != null
     },
     show() {
       return this.$vuetify.breakpoint.smAndDown

@@ -21,7 +21,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { TEST_GET_USER  /*, LOGGED_IN_USER*/ } from '@/graphql/queries'
 
 export default {
   computed: {
@@ -43,19 +42,6 @@ export default {
       User.append('password', this.userPassword)
       try {
         await this.LogIn(User)
-
-          const response =  await this.$apolloProvider.query(
-          { 
-            query: TEST_GET_USER
-          })
-
-       /* const response =  await this.$apolloProvider.query(
-          { 
-            query: LOGGED_IN_USER(), 
-            variables: { id: "/api/users/1594"  } 
-          })*/
-        console.log(response)
-
         this.$router.push('/')
       } catch (error) {
         console.log('error from login ' + error)
