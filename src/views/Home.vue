@@ -2,14 +2,15 @@
   <div>
     <v-container>
       <v-row>
-        <v-col>
+        <v-col cols="12"  sm="6" >
           <p class="title">Mon statut</p>
           14/12 PIAF attendues
+        
 
           <p class="title">Je suis</p>
 
           <p>Très chouette</p>
-          <v-row style="display: inline-flex;align-items: center;">
+          <v-row style="display: inline-flex; align-items: center">
             <v-img
               height="32px"
               width="32px"
@@ -20,8 +21,14 @@
             <p class="m-0">En savoir plus</p>
           </v-row>
         </v-col>
-        <v-col>
+        <v-col cols="12" sm="6" >
           <p class="title">Mes prochaines PIAFs</p>
+          
+           <div v-for='piaf in piafs' :key="piaf.id">
+            {{piaf.creneau.date  | date}}
+            {{piaf.creneau.heureDebut  | time}} - {{piaf.creneau.heureFin  | time}}
+            {{piaf.role.libelle}}
+          </div>  
         </v-col>
       </v-row>
       <v-row>
@@ -41,12 +48,40 @@
 </template>
 
 <script>
+import { NEXT_PIAFS } from '@/graphql/queries'
+import '../filters.js'
+
 export default {
   name: 'Home',
   components: {},
+  mounted: function(){
+    this.nextPiafs()
+  },
+  computed: {
+    userLoged() {
+      return this.$store.getters.user.id
+    },
+  },
   data: () => ({
-    snackbar: false
-  })
+    snackbar: false,
+    piafs: []
+  }),
+  methods: {
+    nextPiafs: function () {
+      this.$apollo
+        .query({
+          query: NEXT_PIAFS,
+          variables: {piaffeur: this.$store.getters.user.id}            
+        })
+        .then((response) => 
+        
+        response.data.piafs.edges.forEach((item)=>{
+          this.piafs.push(item.node)  
+        })      
+        )
+        .catch((response) => console.log(response))
+    },
+  },
 }
 </script>
 

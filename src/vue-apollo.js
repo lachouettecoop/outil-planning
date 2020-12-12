@@ -18,17 +18,7 @@ const httpEndpoint =
   httpEndpoint.substr(0, httpEndpoint.indexOf('/graphql'))
  
 Vue.prototype.$filesRoot = filesRoot*/
-/*const authLink = setContext(async (_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = JSON.parse(localStorage.getItem(process.env.AUTH_TOKEN))
-  // Return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token || ''
-    }
-  }
-})*/
+
 const authLink = setContext((operation, previous) => {
   const token = localStorage.getItem(process.env.AUTH_TOKEN)
   if (!token) {
@@ -105,5 +95,5 @@ export function createProvider(options = {}) {
     }
   })
 
-  return apolloProvider.defaultClient
+  return apolloProvider
 }

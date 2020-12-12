@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import TakePosition from '../views/TakePosition.vue'
-import WatchPlanning from '../views/WatchPlanning.vue'
 import Login from '../views/Login.vue'
 import store from '../store'
 
@@ -12,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home,
+    component: () => import('../views/Home.vue'), //Lazy loading
     meta: { requiresAuth: true }
   },
   {
@@ -23,13 +20,13 @@ const routes = [
   {
     path: '/takePosition',
     name: 'takePosition',
-    component: TakePosition,
+    component: () => import('../views/TakePosition.vue'),//Lazy loading
     meta: { requiresAuth: true }
   },
   {
     path: '/watchPlanning',
     name: 'watchPlanning',
-    component: WatchPlanning,
+    component: () => import('../views/WatchPlanning.vue'),//Lazy loading
     meta: { requiresAuth: true }
   }
 ]

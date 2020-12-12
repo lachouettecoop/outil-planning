@@ -3,6 +3,7 @@ import { LOGGED_IN_USER } from '@/graphql/queries'
 import { createProvider } from '../../vue-apollo'
 
 let apolloProvider = createProvider()
+let apollo = apolloProvider.defaultClient
 
 const state = {
     user: null,
@@ -23,7 +24,7 @@ const actions = {
             console.log(resultLogIn.data)
             localStorage.setItem(process.env.AUTH_TOKEN, resultLogIn.data.token)
            
-            let resultGetUser = await apolloProvider.query(
+            let resultGetUser = await apollo.query(
             {
                 query: LOGGED_IN_USER,
                 variables: { id: `/api/users/${resultLogIn.data.userId}` }
