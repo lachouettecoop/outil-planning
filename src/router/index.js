@@ -24,7 +24,7 @@ const routes = [
     path: '/takePosition',
     name: 'takePosition',
     component: TakePosition,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: false }
   },
   {
     path: '/watchPlanning',

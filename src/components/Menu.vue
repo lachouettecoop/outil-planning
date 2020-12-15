@@ -4,7 +4,7 @@
     app
     floating
     :permanent="sidebarMenu"
-    :mini-variant= this.toggleMini
+    :mini-variant="this.toggleMini"
     mobile-breakpoint="960"
     :v-show="show"
     v-if="isLoggedIn"
@@ -26,7 +26,7 @@
         <v-icon>mdi-account-outline</v-icon>
       </v-list-item-avatar>
       <v-list-item-content class="text-truncate">
-        {{userLoged}}
+        {{ userLoged }}
       </v-list-item-content>
     </v-list-item>
     <v-divider></v-divider>
@@ -36,7 +36,7 @@
           <v-img :src="require('@/assets/img/' + item.icon)"></v-img>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title class="break-line text">{{  
+          <v-list-item-title class="break-line text">{{
             $t('menu.' + item.title)
           }}</v-list-item-title>
         </v-list-item-content>
@@ -47,13 +47,13 @@
 <script>
 export default {
   computed: {
-    isLoggedIn: function () {
+    isLoggedIn: function() {
       return this.$store.getters.isAuthenticated
     },
     show() {
       return this.$vuetify.breakpoint.smAndUp
     },
-    userLoged () {
+    userLoged() {
       return this.$store.getters.user
     }
   },

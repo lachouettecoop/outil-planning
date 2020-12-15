@@ -21,7 +21,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { TEST_GET_USER  /*, LOGGED_IN_USER*/ } from '@/graphql/queries'
+import { TEST_GET_USER /*, LOGGED_IN_USER*/ } from '@/graphql/queries'
 
 export default {
   computed: {
@@ -44,12 +44,11 @@ export default {
       try {
         await this.LogIn(User)
 
-          const response =  await this.$apolloProvider.query(
-          { 
-            query: TEST_GET_USER
-          })
+        const response = await this.$apolloProvider.query({
+          query: TEST_GET_USER
+        })
 
-       /* const response =  await this.$apolloProvider.query(
+        /* const response =  await this.$apolloProvider.query(
           { 
             query: LOGGED_IN_USER(), 
             variables: { id: "/api/users/1594"  } 

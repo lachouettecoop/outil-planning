@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const state = {  
-  userId: null,  
+const state = {
+  userId: null,
   authStatus: false,
   loginFailed: false
 }
@@ -30,8 +30,8 @@ const actions = {
   async LogOut({ commit }) {
     commit('logout')
     if (typeof localStorage !== 'undefined') {
-        localStorage.removeItem(process.env.AUTH_TOKEN)
-      }
+      localStorage.removeItem(process.env.AUTH_TOKEN)
+    }
   }
 }
 
