@@ -30,8 +30,6 @@ const actions = {
                 variables: { id: `/api/users/${resultLogIn.data.userId}` }
             })
 
-            console.log(resultGetUser)
-
             commit('login', resultGetUser.data.user )
             commit('setFailedLogin', false)
         }

@@ -15,6 +15,12 @@
     "user": "Utilisateur",
     "password": "Mot de passe",
     "errorMessage": "L'utilisateur ou le mot de passe n'est pas correct"
+  },
+  "creneauCard":{
+    "availablePosition": "Place disponible",
+    "registration": "S'inscrire",
+    "info": "Informations Utiles",
+    "team": "Equipe"
   }
 
 }

@@ -14,5 +14,11 @@
         "user": "User",
         "password": "Password",
         "errorMessage": "Username or Password is incorrect"
+      },
+      "creneauCard":{
+        "availablePosition": "Available position",
+        "registration": "Registration",
+        "info": "Useful information",
+        "team": "Team"
       }
 }

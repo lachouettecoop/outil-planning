@@ -37,5 +37,50 @@ query NEXT_PIAFS ($piaffeur: String){
 }
 `;
 
+export const PLANNING = gql`
+query PLANNING ($dateIni: String, $dateEnd: String){
+  creneaus(date: {after:$dateIni, before:$dateEnd}) {
+    edges{
+      node{
+        id,
+        date,
+        heureFin,
+        heureDebut,
+        titre,
+        piafs{
+          edges{
+            node{
+              id,
+              role {
+                id,
+                libelle
+              },
+              piaffeur{
+                nom,
+                prenom,
+                email,
+                telephone
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
+
+export const REGISTRATION = gql`
+mutation REGISTRATION ($idPiaf:ID!, $idPiaffeur:String){
+  updatePiaf(input:{id:$idPiaf, piaffeur: $idPiaffeur}){
+    piaf{
+      id
+      piaffeur{
+        id
+      }
+    }
+  }
+}
+`
 
 

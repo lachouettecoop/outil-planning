@@ -24,7 +24,7 @@
         <v-col cols="12" sm="6" >
           <p class="title">Mes prochaines PIAFs</p>
           
-           <div v-for='piaf in piafs' :key="piaf.id">
+           <div v-for="piaf in nextPiafs" :key="piaf.id" >
             {{piaf.creneau.date  | date}}
             {{piaf.creneau.heureDebut  | time}} - {{piaf.creneau.heureFin  | time}}
             {{piaf.role.libelle}}
@@ -55,32 +55,40 @@ export default {
   name: 'Home',
   components: {},
   mounted: function(){
-    this.nextPiafs()
+    this.getNextPiafs()
   },
   computed: {
     userLoged() {
       return this.$store.getters.user.id
-    },
+    }
   },
   data: () => ({
     snackbar: false,
-    piafs: []
+    piafs: [],
+    nextPiafs: []
   }),
   methods: {
-    nextPiafs: function () {
+    getNextPiafs: function () {
       this.$apollo
         .query({
           query: NEXT_PIAFS,
           variables: {piaffeur: this.$store.getters.user.id}            
         })
-        .then((response) => 
-        
-        response.data.piafs.edges.forEach((item)=>{
-          this.piafs.push(item.node)  
-        })      
-        )
+        .then((response) =>         
+          this.loadPIAFS(response))
         .catch((response) => console.log(response))
     },
+    loadPIAFS: function(response){
+        response.data.piafs.edges.forEach((item)=>{
+          this.piafs.push(item.node)  
+        })   
+        this.piafs.sort((a, b) => a.creneau.date.localeCompare(b.creneau.date));
+
+        this.piafs.forEach((item) =>{
+          if(new Date(item.creneau.date).getTime() >= new Date(Date.now()).getTime())
+            this.nextPiafs.push(item)
+        })       
+    }
   },
 }
 </script>

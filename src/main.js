@@ -7,9 +7,12 @@ import axios from 'axios'
 import '@/assets/global.css'
 import i18n from './i18n'
 import { createProvider } from './vue-apollo'
+import constPlugin from "./plugins/constPlugin";
+
 
 Vue.config.productionTip = false
 Vue.use(axios)
+Vue.use(constPlugin);
 
 //axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'https://adminchouettos.lachouettecoop.fr/'

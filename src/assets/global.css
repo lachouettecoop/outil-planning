@@ -2,6 +2,10 @@
     margin: 0 !important;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .title {
     font-size: 6rem;
     color: black;
@@ -11,3 +15,10 @@
     /* Rewrites vuetify class */
     margin:10px;
 }
+
+  .piaf-icon-unavailable {
+    border: solid 2px green;
+  }
+  .piaf-icon-remplacement {
+    border: solid 2px orange;
+  }

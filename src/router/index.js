@@ -21,7 +21,7 @@ const routes = [
     path: '/takePosition',
     name: 'takePosition',
     component: () => import('../views/TakePosition.vue'),//Lazy loading
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: false }
   },
   {
     path: '/watchPlanning',
